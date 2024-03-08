@@ -39,7 +39,7 @@
   "engines": {
     "node": ">=18"
   },
-  "main": "build/main.js",
+  "main": "build/src/main.js",
   "types": "types/main.d.ts",
   "scripts": {
     "prepare": "npm run build",
