@@ -6,5 +6,5 @@
     "declarationDir": "types",
     "outDir": "build",
   },
-  "include": ["index.*", "src/**/*", "tests/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 }
