@@ -39,12 +39,11 @@
   "engines": {
     "node": ">=18"
   },
-  "main": "dist/main.js",
+  "main": "build/main.js",
   "types": "types/main.d.ts",
   "scripts": {
-    "prepare": "npm run build && npm run package",
+    "prepare": "npm run build",
     "build": "tsc",
-    "package": "webpack",
     "build:doc": "typedoc",
     "test": "c8 ava",
     "lint": "prettier --check ."
