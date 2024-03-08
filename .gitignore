@@ -8,3 +8,6 @@ coverage
 build
 docs
 types
+
+dist
+build

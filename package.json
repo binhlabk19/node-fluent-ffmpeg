@@ -40,6 +40,7 @@
   "main": "build/src/main.js",
   "types": "types/main.d.ts",
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc",
     "build:doc": "typedoc",
     "test": "c8 ava",
