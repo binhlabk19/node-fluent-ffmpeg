@@ -28,20 +28,23 @@
     "@types/sinon": "^17.0.1",
     "ava": "^5.3.1",
     "c8": "^8.0.1",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "prettier": "^3.1.0",
     "sinon": "^17.0.1",
     "typedoc": "^0.25.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
   },
-  "dependencies": {},
   "engines": {
     "node": ">=18"
   },
   "main": "build/src/main.js",
   "types": "types/main.d.ts",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "npm run build && npm run package",
     "build": "tsc",
+    "package": "webpack",
     "build:doc": "typedoc",
     "test": "c8 ava",
     "lint": "prettier --check ."
