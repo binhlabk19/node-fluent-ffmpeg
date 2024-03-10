@@ -39,6 +39,7 @@ export class FfmpegProcess implements ProcessOptions {
   captureStdout?: boolean
   inputStream?: Readable
   outputStream?: Writable
+  onStarted?: (pid: number | undefined) => void
   onProgress?: (progress: ProgressInformation) => void
   onCodecData?: (data: InputCodecInformation) => void
   onStderr?: (line: string) => void
@@ -70,7 +71,7 @@ export class FfmpegProcess implements ProcessOptions {
     let cmd = process.env.FFMPEG_PATH || 'ffmpeg'
     let args: string[] = [...this.args]
 
-    let { onProgress, onCodecData, onStderr } = this
+    let { onStarted, onProgress, onCodecData, onStderr } = this
 
     if (this.nice && this.nice !== 0 && !isWindows) {
       args = ['-n', this.nice.toString(), cmd, ...args]
@@ -86,6 +87,10 @@ export class FfmpegProcess implements ProcessOptions {
 
       let stderr = new LineBuffer()
       let stdout = new LineBuffer()
+
+      if (onStarted) {
+        onStarted(child.pid)
+      }
 
       if (onStderr) {
         stderr.on('line', onStderr)
