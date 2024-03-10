@@ -19,6 +19,7 @@ export type RunOptions = {
   nice?: number
   cwd?: string
   timeout?: number
+  onStarted?: (pid: number | undefined) => void
   onProgress?: (progress: ProgressInformation) => void
   onCodecData?: (data: InputCodecInformation) => void
   onStderr?: (line: string) => void
