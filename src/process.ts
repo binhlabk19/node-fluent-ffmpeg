@@ -53,6 +53,7 @@ export class FfmpegProcess implements ProcessOptions {
     this.captureStdout = options.captureStdout
     this.inputStream = options.inputStream
     this.outputStream = options.outputStream
+    this.onStarted = options.onStarted
     this.onProgress = options.onProgress
     this.onCodecData = options.onCodecData
     this.onStderr = options.onStderr
