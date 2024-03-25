@@ -34,6 +34,7 @@ export type OutputOptions = {
 
   audio?: false | OutputAudioOptions
   video?: false | OutputVideoOptions
+  additionalArgs?: string[]
 }
 
 export type OutputDefinition = OutputTarget | OutputOptions
@@ -48,6 +49,8 @@ export class FfmpegOutput implements OutputOptions {
   audio?: false | OutputAudioOptions
   video?: false | OutputVideoOptions
 
+  additionalArgs?: string[]
+
   constructor(options: OutputDefinition) {
     if (typeof options === 'string' || options instanceof Writable) {
       options = { target: options }
@@ -61,6 +64,7 @@ export class FfmpegOutput implements OutputOptions {
 
     this.audio = options.audio
     this.video = options.video
+    this.additionalArgs = options.additionalArgs
 
     this.validateOptions()
   }
@@ -199,6 +203,14 @@ export class FfmpegOutput implements OutputOptions {
     return options
   }
 
+  #getAdditionalOptions(): string[] {
+    if (this.additionalArgs) {
+      return [...this.additionalArgs]
+    }
+
+    return []
+  }
+
   #getOutputString(): string {
     if (typeof this.target === 'string') {
       return this.target
@@ -212,6 +224,7 @@ export class FfmpegOutput implements OutputOptions {
       ...this.#getAudioOptions(),
       ...this.#getVideoOptions(),
       ...this.#getOptions(),
+      ...this.#getAdditionalOptions(),
       this.#getOutputString()
     ]
   }
